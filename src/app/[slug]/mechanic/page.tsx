@@ -432,15 +432,25 @@ export default function MechanicDashboard({ params }: { params: Promise<{ slug: 
               </div>
             </div>
 
-            {/* Link to Passport */}
-            <div className="pt-2 border-t border-slate-800 flex justify-between items-center">
-              <Link
-                href={`/${slug}/passport/${selectedJob.vehiclePlate}`}
-                target="_blank"
-                className="text-xs text-blue-400 hover:underline flex items-center gap-1"
-              >
-                <FileText className="w-3.5 h-3.5" /> Ver Pasaporte Digital de Placa {selectedJob.vehiclePlate}
-              </Link>
+            {/* Link to Passport and WhatsApp Share */}
+            <div className="pt-2 border-t border-slate-800 flex flex-wrap gap-2 justify-between items-center">
+              <div className="flex items-center gap-3">
+                <Link
+                  href={`/${slug}/passport/${selectedJob.vehiclePlate}`}
+                  target="_blank"
+                  className="text-xs text-blue-400 hover:underline flex items-center gap-1"
+                >
+                  <FileText className="w-3.5 h-3.5" /> Pasaporte {selectedJob.vehiclePlate}
+                </Link>
+                <a
+                  href={`https://wa.me/${selectedJob.customerPhone ? selectedJob.customerPhone.replace(/[^0-9]/g, '') : ''}?text=${encodeURIComponent(`¡Hola ${selectedJob.customerName}! Tu cotización en ${slug.toUpperCase()} para ${selectedJob.vehicleModel} (${selectedJob.vehiclePlate}) está lista por $${selectedJob.totalUsd} USD. Revísala aquí: https://service.1group.media/${slug}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-2.5 py-1.5 rounded-lg flex items-center gap-1 transition"
+                >
+                  <span>💬</span> Enviar por WhatsApp
+                </a>
+              </div>
               <button
                 onClick={() => setSelectedJob(null)}
                 className="bg-slate-800 text-white text-xs px-4 py-2 rounded-lg"

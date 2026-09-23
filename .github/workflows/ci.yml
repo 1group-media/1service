@@ -28,4 +28,4 @@ jobs:
         run: npm run build
         env:
           NEXT_TELEMETRY_DISABLED: 1
-          DATABASE_URL: "postgresql://postgres.aswefqrejqbhujjybgex:520372e54bba9d399fca752c0deb97f7@aws-0-us-east-1.pooler.supabase.com:6543/postgres"
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}

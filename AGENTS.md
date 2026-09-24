@@ -21,3 +21,4 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ## Operational & Deployment Policy
 - **Direct CLI Deployments:** Deployments to production (`onepay-prod-1group`) and staging (`onepay-dev-1group`) are executed directly via `scripts/deploy-prod.sh` and `scripts/deploy-dev.sh` (or `gcloud run deploy` / `firebase deploy`).
 - **Zero GitHub Actions Overhead:** GitHub Actions workflows are intentionally disabled (`.github/workflows/*.yml.disabled`) to operate under zero-cost organization limits without requiring paid runner quotas. All build and lint verifications run locally or via agent execution prior to deployment.
+- **Declarative Edge & WAF (1infra):** All domain routing, Cloud Armor rate limits, and load balancers are codified in [1infra](../1infra) via OpenTofu. Never edit GCP edge configurations manually in the web console.

@@ -84,6 +84,10 @@ All domains, DNS zones, and compute fleets are governed by the **3-Tier Consolid
 - A quota preference request (`6d6f45c9-9580-4ed2-8305-de1fa3b7bf8b`, Support case `#75750583`) is active on `admin-1group`.
 - Staging domains can alternatively be provisioned under `onepay-dev-1group` if quota reconciliation is delayed.
 
+### Declarative IaC Governance (OpenTofu)
+All L7 URL mapping, multi-domain SSL certificates, Cloud Armor rate-limiting (120 req/min), and Serverless NEGs for `1group.tech` and `1group.media` are declaratively codified in [`1infra`](1infra). Never mutate load balancing rules manually via the GCP Web Console.
+
+
 ---
 
 ## 3. Email & ICANN Verification Protocol

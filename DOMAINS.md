@@ -59,9 +59,16 @@ To prevent cross-environment contamination, protect brand reputation, and isolat
 
 ## 2. Infrastructure & DNS Governance
 
-All domains and DNS zones are centrally hosted and managed within Google Cloud Platform (**GCP**):
+All domains, DNS zones, and compute fleets are governed by the **3-Tier Consolidated GCP Footprint**:
 
-- **Master GCP Project:** `admin-1group` (Project Number: `1025555791022`).
+| Project ID | Display Name | Role & Workloads |
+| :--- | :--- | :--- |
+| `admin-1group` | `1group Control Plane` | Billing, Cloud Domains, Cloud DNS (`onegroup-*`), Master IAM, Audit logging |
+| `onepay-prod-1group` | `1group Production Fleet` | Consolidated production Cloud Run services (`1pay`, `1tab`, `1commerce`, `1service`, `1delivery`, `1search`, `1command`), Firestore Native prod |
+| `onepay-dev-1group` | `1group Staging and Dev Fleet` | Consolidated staging Cloud Run services (`*-dev`), test benches, mock payment relays |
+| *(Retired)* `onetab-prod-1group` | Decommissioned | Workloads migrated to `onepay-prod-1group` to reclaim GCP project quota |
+
+- **Master Control Project:** `admin-1group` (Project Number: `1025555791022`).
 - **Registrar:** Google Cloud Domains (backed by Squarespace registrar partnership).
 - **Authoritative Nameservers:** Google Cloud DNS managed zones (`ns-cloud-e[1-4].googledomains.com`).
 
@@ -74,7 +81,7 @@ All domains and DNS zones are centrally hosted and managed within Google Cloud P
 
 ### GCP Domain Quota Note
 - GCP defaults `DomainRegistrationsPerProject` to 2 per project.
-- A quota preference request (`6d6f45c9-9580-4ed2-8305-de1fa3b7bf8b`) to bump this to 10 is active on `admin-1group`.
+- A quota preference request (`6d6f45c9-9580-4ed2-8305-de1fa3b7bf8b`, Support case `#75750583`) is active on `admin-1group`.
 - Staging domains can alternatively be provisioned under `onepay-dev-1group` if quota reconciliation is delayed.
 
 ---

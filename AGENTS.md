@@ -17,3 +17,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Operational & Deployment Policy
+- **Direct CLI Deployments:** Deployments to production (`onepay-prod-1group`) and staging (`onepay-dev-1group`) are executed directly via `scripts/deploy-prod.sh` and `scripts/deploy-dev.sh` (or `gcloud run deploy` / `firebase deploy`).
+- **Zero GitHub Actions Overhead:** GitHub Actions workflows are intentionally disabled (`.github/workflows/*.yml.disabled`) to operate under zero-cost organization limits without requiring paid runner quotas. All build and lint verifications run locally or via agent execution prior to deployment.

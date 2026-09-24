@@ -38,7 +38,7 @@ Every agent operating in `1group` repositories MUST adhere to these 6 rules:
 - Never deploy an open POST endpoint that alters ledger state.
 
 ### Invariant 4: Canonical Domain Protocol & No Localhost in Production
-- Always use canonical production subdomains for cross-service links:
+- Always use canonical production subdomains for cross-service links (see [DOMAINS.md](DOMAINS.md) for full environmental separation and architecture):
   - Landing Portal: `https://1group.media`
   - Payments POS & Downloads: `https://pay.1group.media`
   - Gastro POS: `https://tab.1group.media`
@@ -46,6 +46,7 @@ Every agent operating in `1group` repositories MUST adhere to these 6 rules:
   - Workshop SaaS: `https://service.1group.media`
   - Courier Dispatch: `https://delivery.1group.media`
   - Hyperlocal Radar: `https://search.1group.media`
+  - Production APIs & MCP: `https://api.1group.tech` / `https://mcp.1group.tech`
 - Never deploy hardcoded `http://localhost:*` or local LAN IPs (e.g. `192.168.*`) in public web applications.
 
 ### Invariant 5: Dual-Engine Data Architecture (ADR 0004)
